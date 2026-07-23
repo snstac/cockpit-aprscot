@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>com.snstac.cockpit_aprscot</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>APRSCOT</name>
+  <summary>APRS to TAK Gateway admin for Cockpit</summary>
+  <description>
+    <p>This Cockpit module manages APRSCOT, a gateway that forwards APRS (over-the-air RF via a KISS TNC, or APRS-IS) to TAK as Cursor-on-Target.</p>
+    </p>
+  </description>
+  <extends>com.snstac.aiscot</extends>
+  <launchable type="cockpit-manifest">aprscot</launchable>
+  <url type="homepage">https://github.com/snstac/cockpit-aprscot</url>
+  <url type="bugtracker">https://github.com/snstac/cockpit-aprscot/issues</url>
+  <update_contact>info@snstac.com</update_contact>
+  <developer id="com.snstac">
+    <name>Sensors &amp; Signals</name>
+  </developer>
+</component>
