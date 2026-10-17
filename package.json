@@ -7,11 +7,14 @@
   "author": "",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">= 16"
+    "node": ">= 22.12"
   },
   "scripts": {
     "watch": "ESBUILD_WATCH='true' ./build.js",
+    "cockpit-lib": "make pkg/lib/cockpit-po-plugin.js",
+    "prebuild": "npm run cockpit-lib",
     "build": "node ./build.js",
+    "pretest": "npm run cockpit-lib",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "eslint": "eslint src/",
@@ -20,13 +23,18 @@
     "stylelint:fix": "stylelint --fix src/*{.css,scss}"
   },
   "devDependencies": {
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/node": "22.20.5",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
-    "@typescript-eslint/eslint-plugin": "8.40.0",
+    "@typescript-eslint/eslint-plugin": "8.71.2",
+    "@vitest/coverage-v8": "5.0.5",
     "argparse": "2.0.1",
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "esbuild-sass-plugin": "3.7.0",
-    "esbuild-wasm": "0.28.1",
+    "esbuild-wasm": "0.28.2",
     "eslint": "8.57.1",
     "eslint-config-standard": "17.1.0",
     "eslint-config-standard-jsx": "11.0.0",
@@ -39,6 +47,7 @@
     "gettext-parser": "8.0.0",
     "glob": "11.1.0",
     "jed": "1.1.1",
+    "jsdom": "30.1.3",
     "qunit": "2.24.1",
     "stylelint": "16.23.1",
     "stylelint-config-recommended-scss": "16.0.0",
@@ -46,16 +55,21 @@
     "stylelint-config-standard-scss": "15.0.1",
     "stylelint-formatter-pretty": "4.0.1",
     "typescript": "5.9.2",
-    "vitest": "^3.2.4"
+    "vitest": "5.0.5"
   },
   "dependencies": {
-    "@patternfly/patternfly": "6.1.0",
-    "@patternfly/react-core": "6.1.0",
-    "@patternfly/react-icons": "6.1.0",
-    "@patternfly/react-styles": "6.3.1",
+    "@patternfly/patternfly": "6.6.1",
+    "@patternfly/react-core": "6.6.1",
+    "@patternfly/react-icons": "6.6.1",
+    "@patternfly/react-styles": "6.6.1",
     "@snstac/cockpit-shared": "github:snstac/cockpit-shared#v1.3.1",
     "qrcode-generator": "1.4.4",
     "react": "18.3.1",
     "react-dom": "18.3.1"
+  },
+  "overrides": {
+    "@snstac/cockpit-shared": {
+      "@patternfly/react-core": "$@patternfly/react-core"
+    }
   }
 }
