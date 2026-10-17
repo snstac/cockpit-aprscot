@@ -97,18 +97,18 @@ export const CONF_PARAMS: Record<string, EnvVarDefinition> = {
 
     SENSOR_LAT: {
         type: 'string',
-        description: 'Sensor beacon latitude (decimal degrees); gpsd overrides when available',
+        description: 'Sensor beacon latitude (decimal degrees, -90 to 90); gpsd overrides when available',
         defaultValue: '',
-        validation: /^-?\d{1,2}(\.\d+)?$/,
+        validation: /^(-?(90(\.0+)?|[1-8]?\d(\.\d+)?))?$/,
         requiresQuoting: false,
         required: false,
     },
 
     SENSOR_LON: {
         type: 'string',
-        description: 'Sensor beacon longitude (decimal degrees); gpsd overrides when available',
+        description: 'Sensor beacon longitude (decimal degrees, -180 to 180); gpsd overrides when available',
         defaultValue: '',
-        validation: /^-?\d{1,3}(\.\d+)?$/,
+        validation: /^(-?(180(\.0+)?|(1[0-7]\d|[1-9]?\d)(\.\d+)?))?$/,
         requiresQuoting: false,
         required: false,
     },
@@ -134,6 +134,15 @@ export const CONF_PARAMS: Record<string, EnvVarDefinition> = {
     PYTAK_TLS_CLIENT_KEY: {
         type: 'path',
         description: '(TLS) Path to the PEM client private key, if separate from the certificate',
+        defaultValue: '',
+        validation: /^(\/[^\s]*)?$/,
+        requiresQuoting: false,
+        required: false,
+    },
+
+    PYTAK_TLS_CLIENT_CAFILE: {
+        type: 'path',
+        description: '(TLS) Path to the PEM CA bundle used to verify the TAK Server certificate',
         defaultValue: '',
         validation: /^(\/[^\s]*)?$/,
         requiresQuoting: false,

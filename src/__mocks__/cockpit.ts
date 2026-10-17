@@ -56,10 +56,10 @@ function makeProcess(args: string[], options?: SpawnCall['options']): FakeProces
     const doneCbs: Callback[] = [];
     const failCbs: Callback[] = [];
     let settle!: (v: string) => void;
-    let reject!: (e: Error) => void;
-    const promise = new Promise<string>((resolve, rej) => {
+    let fail!: (e: Error) => void;
+    const promise = new Promise<string>((resolve, reject) => {
         settle = resolve;
-        reject = rej;
+        fail = reject;
     });
     // Callers that only use stream/done/fail must not trigger an unhandled rejection.
     promise.catch(() => {});
@@ -74,7 +74,7 @@ function makeProcess(args: string[], options?: SpawnCall['options']): FakeProces
             doneCbs.forEach(cb => cb(output));
         },
         error: err => {
-            reject(err);
+            fail(err);
             failCbs.forEach(cb => cb(err));
         },
     };
@@ -104,7 +104,7 @@ function notifyWatchers(path: string): void {
 const cockpit = {
     gettext: (message: string): string => message,
 
-    file(path: string, _options?: { superuser?: SuperuserMode }) {
+    file(path: string) {
         return {
             async read(): Promise<string> {
                 const err = state.readErrors.get(path);
@@ -133,7 +133,7 @@ const cockpit = {
         return makeProcess(args, options);
     },
 
-    dbus(_name: string | null, _options?: { superuser?: SuperuserMode }) {
+    dbus() {
         return {
             async call(_path: string, _iface: string, _method: string, callArgs?: unknown[]): Promise<unknown[]> {
                 if (state.dbusError)
