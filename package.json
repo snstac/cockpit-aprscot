@@ -23,6 +23,9 @@
     "stylelint:fix": "stylelint --fix src/*{.css,scss}"
   },
   "devDependencies": {
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "@typescript-eslint/eslint-plugin": "8.71.2",
@@ -43,6 +46,7 @@
     "gettext-parser": "8.0.0",
     "glob": "11.1.0",
     "jed": "1.1.1",
+    "jsdom": "30.1.3",
     "qunit": "2.24.1",
     "stylelint": "16.23.1",
     "stylelint-config-recommended-scss": "16.0.0",
