@@ -74,6 +74,9 @@ describe('sensor position validation', () => {
         ['SENSOR_LAT', '-33.8688'],
         ['SENSOR_LON', '-180'],
         ['SENSOR_LON', '151.2093'],
+        // zero-padded values were accepted before the range check and may be in existing files
+        ['SENSOR_LAT', '-05.5'],
+        ['SENSOR_LON', '045.123'],
     ])('accepts in-range %s=%s', async (key, value) => {
         renderApp();
         fireEvent.change(input(key), { target: { value } });
