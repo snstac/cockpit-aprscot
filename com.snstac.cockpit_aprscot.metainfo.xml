@@ -6,7 +6,6 @@
   <summary>APRS to TAK Gateway admin for Cockpit</summary>
   <description>
     <p>This Cockpit module manages APRSCOT, a gateway that forwards APRS (over-the-air RF via a KISS TNC, or APRS-IS) to TAK as Cursor-on-Target.</p>
-    </p>
   </description>
   <extends>com.snstac.aiscot</extends>
   <launchable type="cockpit-manifest">aprscot</launchable>
